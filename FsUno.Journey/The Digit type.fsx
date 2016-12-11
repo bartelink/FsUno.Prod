@@ -59,19 +59,19 @@ Now, once a digit value has been constructed, I'm sure it's valid.
 Far better.
 
 It's no real problem to use exception here. Functions that work on `Digit` can safely trust
-it has been build correctly, so no exception will be raised except in case of bugs. But in
+it has been built correctly, so no exception will be raised, except in case of bugs. But in
 this case, you don't want to go any further - Stop the Press ! - and if you have plugged 
 a bug reporter - and you should - you'll receive a notification. Then fix the bug and release.
 
-It's fine to raise exceptions for things that should not occure at all.
+It's fine to raise exceptions for things that should not occur at all.
 
 The other place where it could happen is at the system boundary: input fields, APIs.
 
-For input fields, you should provide a field that restrict the user to enter valid input. In
-the digit case, a dropdown selector or even better, a list of clickable cards. It's a good way
+For input fields, you should provide a field that restricts the user to entering valid input. In
+the digit case, a dropdown selector or, even better, a list of clickable cards. It's a good way
 to guide the user into providing valid input. 
 
-Another way is to provide a text field and using a try parse function:
+Another way is to provide a text field and using a TryParse function:
 *)
     type Result<'t,'e> =
         | Ok of 't
@@ -86,7 +86,7 @@ Another way is to provide a text field and using a try parse function:
             else
                 Ok (Digit n)
 (**
-Any way, even if you propose a restricted set of values, never assume the client sent a valid input.
+Anyway, even if you propose a restricted set of values, never assume the client sent a valid input.
 Always check the value at input point using the `digit` constructor function.
 *)        
 
@@ -109,7 +109,7 @@ module Drawings =
 This type works perfectly for equality. Enough for me.
 
 And it adds a futher constraint: 
-    I cannot not represent at compile time an invalid value.
+    I cannot represent an invalid value at compile time.
 
 The previous version allowed me to write `digit -3`, which will fail at runtime, but will compile.
 So I'll need unit tests to validate the `digit` constructor function. And hope that no one will do
@@ -166,7 +166,7 @@ let score digit =
     | Height -> 8
     | Nine   -> 9
 (**
-The pattern matching is a total match, so we're sure we missed no case.
+The pattern matching is a total match, so we're sure we've not missed any cases.
 
 Of course, for bigger enumerations, like value between 1 and 100, the wrapping type is probably
 a better option. *)
